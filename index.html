@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ff7a92">
+<meta name="description" content="Pelan gerak kerja telefonpercuma.com untuk Izzati — gaya cartoonish, interaktif, dan mudah difahami oleh team.">
+<title>telefonpercuma.com | Pelan Gerak Kerja Izzati — Final QA v3.1</title>
+<style>
+:root{
+  --bg:#fff8f3;
+  --bg2:#f8fbff;
+  --paper:#ffffff;
+  --ink:#223048;
+  --muted:#68758a;
+  --line:#d7e0ea;
+  --pink:#ff7a92;
+  --pink-dark:#b83756;
+  --yellow:#ffd765;
+  --mint:#aee9d1;
+  --sky:#a7d4ff;
+  --violet:#c7b5ff;
+  --orange:#ffb176;
+  --good:#2d9d70;
+  --bad:#db5b75;
+  --wait:#b47817;
+  --shadow:0 12px 0 rgba(34,48,72,.08),0 18px 30px rgba(34,48,72,.08);
+  --shadow-soft:0 8px 24px rgba(34,48,72,.10);
+  --radius:24px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:110px}
+body{margin:0;background:linear-gradient(180deg,var(--bg) 0%,#fff 35%,var(--bg2) 100%);font:15px/1.6 "Trebuchet MS","Segoe UI",Arial,sans-serif;color:var(--ink)}
+a{text-decoration:none;color:inherit}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid #ffc4cf;outline-offset:2px}
+.wrap{width:min(1200px,calc(100% - 30px));margin-inline:auto}
+.topline{height:10px;background:linear-gradient(90deg,var(--pink),var(--yellow),var(--mint),var(--sky),var(--violet))}
+.topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.82);backdrop-filter:blur(14px);border-bottom:2px solid #ffe5ea}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.logo-badge{width:56px;height:56px;border-radius:18px;background:linear-gradient(135deg,var(--pink),#ff9db0);box-shadow:var(--shadow);display:grid;place-items:center;flex:none;border:3px solid #fff}
+.logo-badge span{font-weight:900;color:#fff;font-size:26px;transform:rotate(-8deg)}
+.brand-title{min-width:0}
+.brand-title h1{font-size:18px;line-height:1.1;margin:0 0 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand-title p{margin:0;color:var(--muted);font-size:12px}
+.top-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.chip-btn,.btn,.tabbtn{border:none;background:#fff;border-radius:999px;padding:11px 14px;font-weight:800;color:var(--ink);box-shadow:var(--shadow-soft);border:2px solid #eef2f7}
+.chip-btn:hover,.btn:hover,.tabbtn:hover{transform:translateY(-1px)}
+.btn.primary{background:linear-gradient(135deg,var(--pink),#ff95a9);color:#fff;border-color:transparent}
+.btn.secondary{background:#fff7da;border-color:#ffe7a8}
+.hero{position:relative;overflow:hidden}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:999px;filter:blur(2px);opacity:.75}
+.hero:before{width:260px;height:260px;right:-80px;top:20px;background:#ffe19d}
+.hero:after{width:200px;height:200px;left:-40px;bottom:10px;background:#ffd0d8}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:24px;padding:34px 0 14px;align-items:center}
+.bubble-card{position:relative;background:linear-gradient(180deg,#fff,#fffdfd);border:3px solid #f5d7de;border-radius:32px;box-shadow:var(--shadow);padding:28px}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:900;color:var(--pink-dark);background:#fff0f3;border:2px solid #ffd1da;padding:8px 12px;border-radius:999px}
+.hero h2{font-size:clamp(34px,5vw,60px);line-height:1.05;letter-spacing:-.05em;margin:16px 0 14px}
+.hero h2 em{font-style:normal;color:var(--pink-dark)}
+.hero p{margin:0;color:#536173;font-size:15px;max-width:720px}
+.quickchips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.quickchips a{padding:10px 14px;border-radius:999px;background:#fff;border:2px dashed #f0cf8b;font-size:12px;font-weight:900;box-shadow:var(--shadow-soft)}
+.note-cloud{margin-top:16px;display:block;background:#f0fbf5;border:2px solid #caecd8;color:#236c4d;padding:12px 15px;border-radius:18px;font-size:13px;font-weight:800;line-height:1.6}.note-cloud strong{display:inline}
+.hero-right{display:grid;gap:16px}
+.count-card{background:linear-gradient(145deg,#fff9e8,#fff);border:3px solid #ffe39d;border-radius:30px;box-shadow:var(--shadow);padding:18px}
+.count-card h3{margin:0 0 8px;font-size:20px}
+.count-status{font-size:12px;color:var(--muted);margin-bottom:12px}
+.clock{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.timebox{background:#fff;border:2px solid #f4ebc7;border-radius:20px;text-align:center;padding:14px 8px}
+.timebox strong{display:block;font-size:30px;line-height:1;font-weight:900}
+.timebox span{font-size:11px;color:var(--muted);font-weight:800;text-transform:uppercase}
+.mascot-card{position:relative;background:linear-gradient(135deg,#eaf6ff,#fff);border:3px solid #cfe6ff;border-radius:30px;box-shadow:var(--shadow);padding:16px;min-height:235px;display:grid;grid-template-columns:140px 1fr;gap:12px;align-items:center}
+.mascot{position:relative;width:120px;height:160px;margin-inline:auto}
+.m-head{position:absolute;left:22px;top:0;width:76px;height:76px;border-radius:50%;background:#ffd7b8;border:3px solid var(--ink)}
+.m-hair{position:absolute;left:18px;top:-4px;width:84px;height:42px;border-radius:46px 46px 24px 24px;background:var(--ink)}
+.m-body{position:absolute;left:20px;top:70px;width:80px;height:60px;border-radius:24px;background:linear-gradient(180deg,var(--pink),#ff97ab);border:3px solid var(--ink)}
+.m-skirt{position:absolute;left:27px;top:122px;width:66px;height:28px;background:var(--sky);clip-path:polygon(8% 0,92% 0,100% 100%,0 100%);border:3px solid var(--ink);border-top:none}
+.m-eye{position:absolute;top:34px;width:8px;height:12px;border-radius:999px;background:var(--ink)}
+.m-eye.left{left:43px}.m-eye.right{right:43px}
+.m-smile{position:absolute;left:43px;top:50px;width:30px;height:14px;border:3px solid var(--ink);border-top:none;border-left:none;border-right:none;border-radius:0 0 20px 20px}
+.m-arm{position:absolute;top:84px;width:18px;height:44px;background:#ffd7b8;border:3px solid var(--ink);border-radius:16px}
+.m-arm.left{left:6px;transform:rotate(12deg)}.m-arm.right{right:6px;transform:rotate(-12deg)}
+.m-leg{position:absolute;top:147px;width:16px;height:36px;background:#ffd7b8;border:3px solid var(--ink);border-radius:16px}
+.m-leg.left{left:38px}.m-leg.right{right:38px}
+.sparkle{position:absolute;width:12px;height:12px;background:var(--yellow);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
+.sparkle.s1{left:0;top:18px}.sparkle.s2{right:2px;top:26px;background:var(--pink)}.sparkle.s3{left:8px;bottom:6px;background:var(--mint)}
+.tipbox h4{margin:0 0 10px;font-size:18px}
+.tipbox p{margin:0 0 14px;color:#5c6a7f;font-size:13px}
+.tipbubble{background:#fff;border:2px dashed #c7ddff;padding:12px 14px;border-radius:18px;font-size:13px;font-weight:700;color:#36577c;min-height:74px}
+.statgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:20px 0 6px}
+.stat{background:#fff;border-radius:24px;padding:18px;border:3px solid #eef2f7;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.stat:before{content:"";position:absolute;right:-15px;top:-15px;width:70px;height:70px;border-radius:50%;opacity:.33;background:var(--sky)}
+.stat:nth-child(2):before{background:var(--mint)}.stat:nth-child(3):before{background:#ffd7a3}.stat:nth-child(4):before{background:#ffd1da}
+.stat small{display:block;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.stat strong{display:block;font-size:28px;line-height:1.1;margin:8px 0 6px}
+.stat span{font-size:12px;color:#5e6c80}
+main{padding-bottom:80px}
+.section{padding-top:38px}
+.section-title{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}
+.section-title h3{font-size:30px;line-height:1.1;letter-spacing:-.04em;margin:0}
+.section-title p{margin:8px 0 0;color:#667488;max-width:760px}
+.section-tag{background:#fff;border:2px solid #f0d6de;padding:10px 13px;border-radius:999px;font-size:12px;font-weight:900;white-space:nowrap;box-shadow:var(--shadow-soft)}
+.card{background:#fff;border:3px solid #eef2f7;border-radius:26px;box-shadow:var(--shadow);padding:20px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.info-list{display:grid;gap:12px}
+.info-item{display:flex;gap:12px;align-items:flex-start;padding:14px;background:#fff9fc;border:2px solid #ffdbe3;border-radius:18px}
+.info-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:16px;background:#fff;border:2px solid #ffdbe3;font-size:20px;flex:none}
+.scope-card{background:linear-gradient(180deg,#fff,#fffdf8);border:3px solid #ffe9bc;border-radius:24px;padding:18px;box-shadow:var(--shadow)}
+.scope-card h4{margin:10px 0 6px;font-size:18px}
+.scope-card p{margin:0;color:#56657a;font-size:13px}
+.scope-badge{display:inline-block;background:#fff;border:2px dashed #ffcf75;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:900}
+.scope-output{margin-top:12px;padding-top:10px;border-top:2px dashed #efe6c7;font-size:12px;color:#7b5f1a;font-weight:800}
+.accordion{display:grid;gap:12px}
+details.faq{background:#fff;border:3px solid #eef2f7;border-radius:22px;box-shadow:var(--shadow-soft);overflow:hidden}
+details.faq summary{list-style:none;padding:18px 18px 18px 20px;cursor:pointer;font-weight:900;display:flex;justify-content:space-between;align-items:center;gap:10px}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary span{font-size:18px}
+details.faq[open] summary{background:#fff7e9}
+.faq-body{padding:0 20px 18px;color:#5b697d;font-size:14px}
+.timeline{display:grid;gap:14px}
+.tline-row{display:grid;grid-template-columns:112px 1fr;gap:14px;align-items:stretch}
+.tdate{background:linear-gradient(180deg,#fff0f3,#fff);border:3px solid #ffd3dc;border-radius:22px;padding:14px;text-align:center;box-shadow:var(--shadow)}
+.tdate b{display:block;font-size:30px;line-height:1}.tdate small{font-size:11px;font-weight:900;text-transform:uppercase;color:var(--muted)}
+.tcontent{background:#fff;border:3px solid #eef2f7;border-radius:24px;padding:16px;box-shadow:var(--shadow)}
+.tcontent h4{margin:0 0 8px;font-size:18px}.tcontent p{margin:0;color:#5b697d;font-size:14px}.mini-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.mini-tags span{background:#f4f8ff;border:2px solid #d8e7ff;color:#36577c;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:900}
+.progress-wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.pbox{background:#fff;border:3px solid #eef2f7;border-radius:24px;padding:18px;box-shadow:var(--shadow)}
+.pbox h4{margin:0 0 10px}.pbar{height:18px;background:#edf1f6;border-radius:999px;overflow:hidden;border:2px solid #dde4ee}.pfill{height:100%;background:linear-gradient(90deg,var(--pink),#ffb1c0);width:0%}.pfill.blue{background:linear-gradient(90deg,var(--sky),#74b7ff)}
+.pmeta{display:flex;justify-content:space-between;gap:10px;margin-top:10px;font-size:13px;color:#5b697d;font-weight:800}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.tabbtn.active{background:linear-gradient(135deg,var(--pink),#ff9cb0);color:#fff;border-color:transparent}
+.tabpanel{display:none}.tabpanel.active{display:block}
+.tablewrap{overflow:auto;border-radius:22px;border:3px solid #eef2f7;box-shadow:var(--shadow);background:#fff}
+table{width:100%;border-collapse:collapse;min-width:720px}th,td{padding:14px 12px;text-align:left;vertical-align:top}th{background:#263651;color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:.06em}tr:nth-child(even) td{background:#fbfcff}td{border-top:1px solid #e8eef5;font-size:14px;color:#526174}
+.flow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.flow-card{position:relative;background:#fff;border:3px solid #eef2f7;border-radius:22px;padding:16px;box-shadow:var(--shadow);text-align:center}
+.flow-card .emoji{font-size:28px;display:block;margin-bottom:6px}.flow-card b{display:block;margin-bottom:6px}
+.flow-card small{color:#67758a}.flow-card:not(:last-child):after{content:'➜';position:absolute;right:-12px;top:40%;font-size:26px;color:var(--pink-dark)}
+.tracker-shell{display:grid;grid-template-columns:280px minmax(0,1fr);gap:16px;align-items:start}
+.tracker-side{display:flex;flex-direction:column;align-items:stretch;gap:14px}
+.donut{width:176px;height:176px;margin:8px auto;position:relative;background:conic-gradient(var(--pink) var(--fill,0%), #edf1f6 0);border-radius:50%;border:8px solid #fff;box-shadow:var(--shadow)}
+.donut:before{content:"";position:absolute;inset:16px;background:#fff;border-radius:50%;box-shadow:inset 0 0 0 2px #eff3f7}
+.donut-inner{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:34px;font-weight:900}
+.donut-inner strong{font-size:34px;line-height:1}.donut-inner span{font-size:12px;color:var(--muted)}
+.kpi-list{display:grid;gap:10px}.kpi-chip{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;background:#f9fbff;border:2px solid #e4ecf6;border-radius:18px;font-size:14px;font-weight:800}
+.filter-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.filter-row #search{flex:1 1 250px;width:auto;min-width:0}.filter-row #filter{flex:0 1 220px;width:auto}.results-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:16px;padding-top:14px;border-top:2px dashed #e5ecf4;color:#5e6d80;font-size:13px;font-weight:800}
+.field{width:100%;padding:12px 14px;border-radius:16px;border:2px solid #dfe7f0;background:#fff;color:var(--ink)}
+.taskgrid{display:grid;gap:12px}
+.task{display:grid;grid-template-columns:95px minmax(0,1fr) 170px 200px;gap:12px;align-items:start;background:#fff;border:3px solid #eef2f7;border-radius:22px;padding:14px;box-shadow:var(--shadow-soft)}
+.task.complete{border-color:#ccebdc;background:#f5fff9}.task.wait{border-color:#ffe2a6;background:#fffaf0}
+.due{background:#fff7f9;border:2px dashed #ffd3dc;border-radius:18px;padding:10px;text-align:center;font-weight:900;color:#915061;font-size:12px}.due small{display:block;font-size:11px;color:#7b8797;margin-top:3px}
+.tgroup{display:inline-flex;padding:5px 9px;background:#eef7ff;border-radius:999px;border:2px solid #d7eaff;font-size:11px;font-weight:900;color:#36577c;margin-bottom:8px}
+.task h4{margin:0 0 6px;font-size:16px}.task p{margin:0;color:#5a687c;font-size:13px}
+.statusblock label,.task-note label{display:block;font-size:11px;font-weight:900;color:#69778b;text-transform:uppercase;margin-bottom:6px}
+.quick-actions{display:flex;gap:10px;flex-wrap:wrap}
+.report-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.report-card{background:#fff;border:3px solid #eef2f7;border-radius:24px;padding:18px;box-shadow:var(--shadow)}
+.report-card h4{margin:0 0 10px}.report-card ul{padding-left:18px;margin:0}.report-card li{margin:6px 0;color:#5d6b7f}
+.brief-box{background:linear-gradient(180deg,#fff7fb,#fff);border:3px solid #ffd8e1;border-radius:26px;padding:22px;box-shadow:var(--shadow)}
+.brief-box p{white-space:pre-line;color:#47556a}
+.footer{padding:26px 0 60px;color:#64748b;font-size:13px;text-align:center}.save-hint{color:#536779;font-size:12px;line-height:1.6;margin:12px 0 0}.save-hint strong{color:#274969}.task:focus-within{outline:2px solid #ffafbf;outline-offset:2px}
+.hide{display:none}
+@media (max-width: 1100px){
+  .hero .wrap,.tracker-shell,.grid-2,.grid-3,.report-cards,.progress-wrap{grid-template-columns:1fr}
+  .hero-right{grid-template-columns:1fr 1fr}
+  .statgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .flow{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .flow-card:nth-child(3):after,.flow-card:nth-child(6):after{display:none}
+}
+@media (max-width: 820px){
+  .topbar{position:relative}
+  .topbar .wrap{align-items:flex-start;flex-direction:column}
+  .top-actions{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .top-actions>*{min-width:0;padding:9px 7px;min-height:44px;text-align:center;font-size:12px}
+  .hero .wrap,.hero-right,.mascot-card,.task,.tline-row{grid-template-columns:1fr}
+  .filter-row #search,.filter-row #filter{flex:1 1 100%;width:100%;max-width:none!important}
+  .clock{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .statgrid{grid-template-columns:1fr 1fr}
+  .flow{grid-template-columns:1fr 1fr}
+  .flow-card:after{display:none}
+}
+@media (max-width: 560px){
+  body{font-size:14px}
+  .wrap{width:min(100% - 18px,1200px)}
+  .hero h2{font-size:34px}
+  .bubble-card,.count-card,.mascot-card,.card,.brief-box{padding:16px}
+  .section-title{display:block}
+  .statgrid,.flow{grid-template-columns:1fr}
+  .brand-title h1{font-size:16px;white-space:normal}
+  .task{padding:14px;gap:10px}
+  .due{padding:9px}
+  .stat{padding:15px}
+}
+@media print{
+  .topbar,.topline,.quick-actions,.btn,.chip-btn,.tabbtn,.quickchips,.note-cloud,.footer,.results-meta{display:none !important}
+  .tabpanel{display:block!important;break-inside:avoid}
+  .card,.bubble-card,.count-card,.mascot-card,.report-card,.scope-card,.pbox,.task,.brief-box,.tcontent,.tdate,.stat{break-inside:avoid}
+  body{background:#fff}
+  .card,.bubble-card,.count-card,.mascot-card,.report-card,.scope-card,.pbox,.task,.brief-box,.tcontent,.tdate,.stat{box-shadow:none}
+}
+/* Readability polish: avoid tiny labels and maintain comfortable interactive targets */
+.stat small,.timebox span,.due small,.tgroup,.scope-badge,.tdate small,.mini-tags span,.statusblock label,.task-note label{font-size:12px}
+.stat span,.scope-output,.flow-card small{font-size:13px}
+.field{min-height:46px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:0.01ms!important;animation-duration:0.01ms!important}}
+</style>
+</head>
+<body>
+<div class="topline"></div>
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">
+      <div class="logo-badge"><span>TP</span></div>
+      <div class="brand-title">
+        <h1>telefonpercuma.com — Pelan Gerak Kerja Izzati</h1>
+        <p>Klien: Redzone Global Sdn Bhd · Fokus: Social Media, Editing, Posting & Campaign</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <a class="chip-btn" href="#tracker">Task Tracker</a>
+      <a class="chip-btn" href="#timeline">Timeline</a>
+      <button class="btn secondary" id="mascotTipBtn" type="button">Tip Mascot ✨</button>
+      <button class="btn primary" id="printBtn" type="button">Print / PDF</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="bubble-card">
+      <span class="kicker">🎯 Digital Marketing PIC · Internship Friendly</span>
+      <h2>Skop Izzati = <em>handle social media</em>, editing, posting, campaign & reporting.</h2>
+      <p>Dokumen ini direka semula supaya lebih mudah difahami oleh Izzati, kau, dan team. Fokus hanyalah pada kerja digital marketing untuk <strong>telefonpercuma.com</strong>. Urusan harga, sales, komisen, kewangan dan closing sale <strong>bukan</strong> dalam skop Izzati.</p>
+      <div class="quickchips">
+        <a href="#overview">Overview</a>
+        <a href="#scope">Scope</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#tracker">Tracker</a>
+        <a href="#reporting">Reporting</a>
+      </div>
+      <div class="note-cloud">💡 Projek A–Z Izzati merujuk kepada <strong>workflow digital marketing</strong>, bukan operasi perniagaan. Keperluan penilaian rasmi perlu ikut pengesahan universiti.</div>
+    </div>
+
+    <div class="hero-right">
+      <div class="count-card">
+        <h3 id="countTitle">Menuju 7 November 2026</h3>
+        <div class="count-status" id="countStatus">Baki masa menuju tarikh mula projek</div>
+        <div class="clock">
+          <div class="timebox"><strong id="days">0</strong><span>Hari</span></div>
+          <div class="timebox"><strong id="hours">00</strong><span>Jam</span></div>
+          <div class="timebox"><strong id="mins">00</strong><span>Minit</span></div>
+          <div class="timebox"><strong id="secs">00</strong><span>Saat</span></div>
+        </div>
+      </div>
+
+      <div class="mascot-card">
+        <div class="mascot" aria-hidden="true">
+          <div class="sparkle s1"></div><div class="sparkle s2"></div><div class="sparkle s3"></div>
+          <div class="m-hair"></div><div class="m-head"></div>
+          <div class="m-eye left"></div><div class="m-eye right"></div><div class="m-smile"></div>
+          <div class="m-arm left"></div><div class="m-arm right"></div>
+          <div class="m-body"></div><div class="m-skirt"></div>
+          <div class="m-leg left"></div><div class="m-leg right"></div>
+        </div>
+        <div class="tipbox">
+          <h4>Meet “Telly” 👋</h4>
+          <p>Figurine guide untuk bantu explain kerja Izzati dengan cara lebih santai dan jelas.</p>
+          <div class="tipbubble" id="mascotTip" aria-live="polite">Fokus utama minggu pertama: collect bahan dari klien, edit content awal, dan pastikan posting pipeline jalan.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="statgrid">
+    <div class="stat"><small>Total Tugasan</small><strong id="total">21</strong><span>Task utama untuk skop Izzati</span></div>
+    <div class="stat"><small>Siap</small><strong id="done">0</strong><span>Tugasan yang telah diselesaikan</span></div>
+    <div class="stat"><small>Dalam Proses</small><strong id="doing">0</strong><span>Kerja yang sedang dijalankan</span></div>
+    <div class="stat"><small>Menunggu / Blocked</small><strong id="holding">0</strong><span>Contoh: tunggu footage atau approval</span></div>
+  </div>
+
+  <main>
+    <section class="section" id="overview">
+      <div class="section-title">
+        <div>
+          <h3>1. Overview Projek</h3>
+          <p>Bahagian ini menerangkan konteks projek, siapa klien, dan apa sebenarnya peranan Izzati di bawah bahagian digital marketing.</p>
+        </div>
+        <div class="section-tag">Cartoon UI · Clear Scope</div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h4>Project Snapshot</h4>
+          <div class="info-list">
+            <div class="info-item"><div class="info-icon">🌐</div><div><strong>Nama projek</strong><br>telefonpercuma.com</div></div>
+            <div class="info-item"><div class="info-icon">🏢</div><div><strong>Klien</strong><br>Redzone Global Sdn Bhd</div></div>
+            <div class="info-item"><div class="info-icon">📅</div><div><strong>Tarikh mula rujukan</strong><br>7 November 2026</div></div>
+            <div class="info-item"><div class="info-icon">🎓</div><div><strong>Hubungan dengan internship</strong><br>Digunakan sebagai projek pembelajaran A–Z dalam bidang digital marketing</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <h4>Sempadan kerja Izzati</h4>
+          <div class="accordion">
+            <details class="faq" open>
+              <summary><span>✅ Izzati handle apa?</span><b>+</b></summary>
+              <div class="faq-body">Collect video/bahan daripada klien, content planning, editing video, caption, posting, scheduling, jalankan campaign yang diluluskan, monitor platform media sosial, dan buat reporting berdasarkan performance social media.</div>
+            </details>
+            <details class="faq">
+              <summary><span>🚫 Izzati tak handle apa?</span><b>+</b></summary>
+              <div class="faq-body">Sales, closing, harga, komisen, pakej, bajet, kewangan, contract, dan keputusan komersial lain. Semua ini berada di bawah management / klien.</div>
+            </details>
+            <details class="faq">
+              <summary><span>📩 Macam mana dengan DM?</span><b>+</b></summary>
+              <div class="faq-body">Izzati boleh pantau komen/DM di media sosial KAGUM dan buat respons awal jika ada skrip/FAQ yang diluluskan. Jika melibatkan jualan, pelanggan akan dirujuk kepada Redzone untuk closing sale.</div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="scope">
+      <div class="section-title">
+        <div>
+          <h3>2. Scope Kerja Izzati</h3>
+          <p>Ini ialah pecahan kerja yang sesuai untuk seorang PIC Digital Marketing & Social Media Campaign. Ia cukup lengkap untuk dinilai sebagai projek internship, tetapi masih realistik dan ikut skop sebenar.</p>
+        </div>
+        <div class="section-tag">6 Fokus Utama</div>
+      </div>
+      <div class="grid-3">
+        <div class="scope-card"><span class="scope-badge">01 · Collect Content</span><h4>Request & kumpul bahan</h4><p>Minta video, gambar dan bahan promosi daripada Redzone Global Sdn Bhd. Simpan dalam folder yang teratur dengan log penerimaan.</p><div class="scope-output">Output: Asset Request Log + Content Folder</div></div>
+        <div class="scope-card"><span class="scope-badge">02 · Planning</span><h4>Content idea & calendar</h4><p>Brainstorm hook, angle content, platform yang sesuai, dan jadual posting untuk minggu semasa.</p><div class="scope-output">Output: Content Calendar + Idea Bank</div></div>
+        <div class="scope-card"><span class="scope-badge">03 · Editing</span><h4>Edit video & caption</h4><p>Edit video, buat subtitle, pilih thumbnail/cover, sediakan caption dan CTA mengikut format platform.</p><div class="scope-output">Output: Ready-to-post content</div></div>
+        <div class="scope-card"><span class="scope-badge">04 · Posting</span><h4>Publish & schedule</h4><p>Muat naik content, cross-post jika sesuai, dan pastikan jadual posting dipatuhi berdasarkan approval.</p><div class="scope-output">Output: Posting Log + Live URL</div></div>
+        <div class="scope-card"><span class="scope-badge">05 · Campaign</span><h4>Run campaign</h4><p>Laksanakan campaign organik atau campaign yang telah diarahkan/diluluskan management. Fokus kepada execution, bukan keputusan kewangan.</p><div class="scope-output">Output: Campaign Execution Tracker</div></div>
+        <div class="scope-card"><span class="scope-badge">06 · Reporting</span><h4>Monitor & report</h4><p>Pantau performance content dan platform, kemudian siapkan weekly report dengan cadangan penambahbaikan.</p><div class="scope-output">Output: Weekly Social Media Performance Report</div></div>
+      </div>
+    </section>
+
+    <section class="section" id="workflow">
+      <div class="section-title">
+        <div>
+          <h3>3. Workflow Mingguan</h3>
+          <p>Ini flow kerja paling ringkas untuk memudahkan Izzati nampak keseluruhan cycle dari awal hingga hujung minggu.</p>
+        </div>
+        <div class="section-tag">Repeatable Cycle</div>
+      </div>
+      <div class="flow">
+        <div class="flow-card"><span class="emoji">📥</span><b>Collect</b><small>Request & terima bahan daripada klien</small></div>
+        <div class="flow-card"><span class="emoji">🧠</span><b>Brainstorm</b><small>Rancang content idea, hook & caption</small></div>
+        <div class="flow-card"><span class="emoji">🎬</span><b>Edit</b><small>Video editing, subtitle, cover & CTA</small></div>
+        <div class="flow-card"><span class="emoji">✅</span><b>Approval</b><small>Hantar content untuk review</small></div>
+        <div class="flow-card"><span class="emoji">📲</span><b>Post</b><small>Publish, schedule & run campaign</small></div>
+        <div class="flow-card"><span class="emoji">📊</span><b>Report</b><small>Monitor performance & cadang improvement</small></div>
+      </div>
+    </section>
+
+    <section class="section" id="timeline">
+      <div class="section-title">
+        <div>
+          <h3>4. Countdown & Timeline</h3>
+          <p>Timeline ini membantu semua orang nampak tempoh kickoff, fasa awal projek, dan kaitannya dengan tempoh internship Izzati.</p>
+        </div>
+        <div class="section-tag">Countdown + Progress</div>
+      </div>
+      <div class="timeline">
+        <div class="tline-row">
+          <div class="tdate"><b>4</b><small>Nov 2026</small></div>
+          <div class="tcontent"><h4>Kickoff & briefing</h4><p>Jelaskan skop, peranan, akses dan tugas awal. Susun aliran kerja Izzati dalam ruang lingkup digital marketing sahaja.</p><div class="mini-tags"><span>Briefing</span><span>Scope clarity</span><span>Asset request</span></div></div>
+        </div>
+        <div class="tline-row">
+          <div class="tdate"><b>5–6</b><small>Nov 2026</small></div>
+          <div class="tcontent"><h4>Persediaan content & approval</h4><p>Kumpul bahan, semak baseline platform, edit video awal, sediakan content calendar dan hantar untuk approval.</p><div class="mini-tags"><span>Editing</span><span>Caption</span><span>Scheduling</span></div></div>
+        </div>
+        <div class="tline-row">
+          <div class="tdate"><b>7</b><small>Nov 2026</small></div>
+          <div class="tcontent"><h4>Tarikh mula projek</h4><p>Mula publish content yang telah approved atau aktifkan operasi kempen mengikut readiness sebenar.</p><div class="mini-tags"><span>Go live</span><span>Monitoring</span></div></div>
+        </div>
+        <div class="tline-row">
+          <div class="tdate"><b>Week 1</b><small>Nov 2026</small></div>
+          <div class="tcontent"><h4>Baseline performance</h4><p>Pantau performance awal, dokumentasikan isu dan kenal pasti jenis content yang paling cepat mendapat respons.</p><div class="mini-tags"><span>Insights</span><span>Content learning</span></div></div>
+        </div>
+        <div class="tline-row">
+          <div class="tdate"><b>4 bln</b><small>Nov–Mac</small></div>
+          <div class="tcontent"><h4>Fasa projek rujukan</h4><p>Tempoh rujukan awal projek telefonpercuma.com. Fokus kepada execution consistency, social media growth dan reporting.</p><div class="mini-tags"><span>Execution</span><span>Campaign cycle</span><span>Monthly review</span></div></div>
+        </div>
+        <div class="tline-row">
+          <div class="tdate"><b>Aug</b><small>2027</small></div>
+          <div class="tcontent"><h4>Tamat internship Izzati</h4><p>Izzati dijangka tamat internship pada Ogos 2027; tarikh tepat belum disahkan. Segala log pembelajaran dan bukti kerja patut disimpan sejak awal.</p><div class="mini-tags"><span>Portfolio</span><span>Internship logbook</span></div></div>
+        </div>
+      </div>
+      <div class="progress-wrap" style="margin-top:16px">
+        <div class="pbox"><h4>Progress tempoh rujukan projek</h4><div class="pbar"><div class="pfill" id="projBar"></div></div><div class="pmeta"><span>7 Nov 2026 → 7 Mac 2027</span><span id="projPercent">0%</span></div></div>
+        <div class="pbox"><h4>Progress tempoh penglibatan projek sepanjang internship (anggaran)</h4><div class="pbar"><div class="pfill blue" id="internBar"></div></div><div class="pmeta"><span>7 Nov 2026 → akhir Ogos 2027</span><span id="internPercent">0%</span></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="tracker">
+      <div class="section-title">
+        <div>
+          <h3>5. Interactive Task Tracker</h3>
+          <p>Tracker ini direka untuk kegunaan harian. Izzati boleh tukar status, isi nota blocker dan eksport CSV untuk dipindahkan ke Google Sheets bila perlu.</p>
+        </div>
+        <div class="section-tag">Editable in Browser</div>
+      </div>
+      <div class="tracker-shell">
+        <aside class="tracker-side">
+          <div class="card" style="text-align:center">
+            <h4 style="margin-top:0">Progress Keseluruhan</h4>
+            <div class="donut" id="ring"><div class="donut-inner"><div><strong id="percent">0%</strong><span>task siap</span></div></div></div>
+            <div class="kpi-list">
+              <div class="kpi-chip"><span>Total task</span><strong id="sideTotal">21</strong></div>
+              <div class="kpi-chip"><span>Done</span><strong id="sideDone">0</strong></div>
+              <div class="kpi-chip"><span>Doing</span><strong id="sideDoing">0</strong></div>
+              <div class="kpi-chip"><span>Waiting / Blocked</span><strong id="sideHolding">0</strong></div>
+            </div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Quick Actions</h4>
+            <div class="quick-actions">
+              <button class="btn primary" id="csv">Export CSV</button>
+              <button class="btn secondary" id="backup">Backup JSON</button>
+              <button class="btn secondary" id="restore">Import Backup</button>
+              <button class="btn secondary" id="reset">Reset Tracker</button>
+            </div>
+            <input class="hide" type="file" id="restoreFile" accept="application/json">
+            <p class="save-hint">🗂️ <strong>Simpanan peranti:</strong> status dan nota disimpan dalam browser yang sama jika storage dibenarkan. Ia <strong>bukan tracker live bersama</strong>. Gunakan eksport CSV / backup JSON untuk berkongsi atau menyimpan salinan.</p>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Status Guide</h4>
+            <div class="kpi-list">
+              <div class="kpi-chip"><span>Belum mula</span><span>Belum sentuh task</span></div>
+              <div class="kpi-chip"><span>Dalam proses</span><span>Task sedang dibuat</span></div>
+              <div class="kpi-chip"><span>Menunggu Bahan</span><span>Tunggu footage / asset</span></div>
+              <div class="kpi-chip"><span>Menunggu Approval</span><span>Tunggu semakan approver</span></div>
+              <div class="kpi-chip"><span>Blocked</span><span>Ada halangan jelas</span></div>
+              <div class="kpi-chip"><span>Siap</span><span>Selesai & ada output</span></div>
+            </div>
+          </div>
+        </aside>
+        <div class="card">
+          <div class="filter-row">
+            <input class="field" type="search" id="search" placeholder="Cari task, output atau nota..."></input>
+            <select class="field" id="filter" style="max-width:260px">
+              <option value="all">Semua status</option>
+              <option>Belum mula</option>
+              <option>Dalam proses</option>
+              <option>Menunggu Bahan</option>
+              <option>Menunggu Approval</option>
+              <option>Blocked</option>
+              <option>Siap</option>
+            </select>
+          </div>
+          <div class="taskgrid" id="tasks"></div>
+          <div class="results-meta" aria-live="polite"><span id="resultsInfo">Memaparkan 7 daripada 21 tugasan</span><button class="btn secondary" type="button" id="loadMore">Tunjuk 7 tugasan lagi</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reporting">
+      <div class="section-title">
+        <div>
+          <h3>6. Reporting & KPI</h3>
+          <p>Prestasi Izzati sepatutnya dinilai berdasarkan perkara yang memang berada dalam kawalannya: content, consistency, engagement dan reporting.</p>
+        </div>
+        <div class="section-tag">Performance Focus</div>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Reporting Tabs">
+        <button class="tabbtn active" role="tab" aria-selected="true" aria-controls="tab-kpi" data-tab="kpi" type="button">KPI Izzati</button>
+        <button class="tabbtn" role="tab" aria-selected="false" aria-controls="tab-weekly" data-tab="weekly" type="button">Weekly Report</button>
+        <button class="tabbtn" role="tab" aria-selected="false" aria-controls="tab-note" data-tab="note" type="button">Important Notes</button>
+      </div>
+      <div class="tabpanel active" role="tabpanel" id="tab-kpi">
+        <div class="report-cards">
+          <div class="report-card"><h4>Posting Compliance</h4><ul><li>Adakah content yang telah approved berjaya dipost mengikut jadual?</li><li>Berapa banyak posting yang terlaksana berbanding perancangan?</li></ul></div>
+          <div class="report-card"><h4>Content Performance</h4><ul><li>Views, reach, watch time dan engagement rate jika data tersedia.</li><li>Kenal pasti content terbaik dan content yang lemah.</li></ul></div>
+          <div class="report-card"><h4>Reporting Quality</h4><ul><li>Laporan dihantar tepat pada masa.</li><li>Ada insight dan cadangan improvement, bukan sekadar angka.</li></ul></div>
+        </div>
+      </div>
+      <div class="tabpanel" role="tabpanel" id="tab-weekly">
+        <div class="report-cards">
+          <div class="report-card"><h4>Isi minimum weekly report</h4><ul><li>Bilangan content diterbitkan</li><li>Platform yang digunakan</li><li>Top 3 content performance</li><li>Isu / blocker minggu tersebut</li></ul></div>
+          <div class="report-card"><h4>Analisis ringkas</h4><ul><li>Apa hook yang paling berkesan?</li><li>Ada perubahan follower / reach?</li><li>Content jenis apa patut diulang?</li></ul></div>
+          <div class="report-card"><h4>Cadangan minggu depan</h4><ul><li>1–2 improvement dari segi editing</li><li>Cadangan posting angle</li><li>Bahan apa yang perlu diminta lagi daripada klien?</li></ul></div>
+        </div>
+      </div>
+      <div class="tabpanel" role="tabpanel" id="tab-note">
+        <div class="card">
+          <ul>
+            <li>Jangan nilai prestasi Izzati berdasarkan sales atau komisen kerana itu di luar kawalannya.</li>
+            <li>Jika bilangan posting belum ditetapkan management/klien, elakkan menetapkan angka rawak sebagai KPI tetap.</li>
+            <li>Status “Menunggu Bahan” dan “Menunggu Approval” penting untuk membezakan kerja tertangguh kerana faktor luar.</li>
+            <li>Simpan semua bukti kerja seperti versi video, screenshot performance, content calendar dan laporan untuk kegunaan internship.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="briefing">
+      <div class="section-title">
+        <div>
+          <h3>7. Teks Briefing untuk Izzati</h3>
+          <p>Teks ini boleh terus dibaca, disalin, atau dimasukkan dalam WhatsApp/Telegram sebagai arahan ringkas.</p>
+        </div>
+        <div class="section-tag">Copy Ready</div>
+      </div>
+      <div class="brief-box">
+        <p id="briefText">Izzati, untuk projek telefonpercuma.com di bawah klien Redzone Global Sdn Bhd, awak ialah PIC utama bagi bahagian digital marketing dan media sosial sahaja.
+
+Skop awak ialah collect video dan bahan daripada klien, susun idea content dan content calendar, edit video/caption, submit content untuk approval, posting atau scheduling, jalankan campaign yang diluluskan, monitor akaun media sosial, dan siapkan weekly report berdasarkan performance media sosial.
+
+Awak tidak perlu urus sales, komisen, harga, pakej, closing sale, kewangan atau keputusan komersial lain.
+
+Kalau ada DM atau pertanyaan jualan yang masuk melalui media sosial KAGUM, awak boleh buat respons awal jika ada skrip/FAQ yang telah diluluskan. Untuk urusan jualan, pelanggan akan dirujuk kepada Redzone.
+
+Setiap tugasan perlu ada status dan output. Kalau bahan belum diterima atau approval belum dapat, tandakan dalam tracker sebagai Menunggu Bahan atau Menunggu Approval supaya progress lebih jelas.
+
+Yang paling penting: jaga consistency content, pastikan workflow jalan, dan buat reporting yang jelas supaya projek ini boleh jadi bukti kerja internship awak dalam bidang digital marketing.</p>
+        <div class="quick-actions" style="margin-top:14px">
+          <button class="btn primary" type="button" id="copy">Salin teks briefing</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="footer">telefonpercuma.com · Redzone Global Sdn Bhd · Pelan Gerak Kerja Izzati (Final QA v3.1) · Disediakan untuk kegunaan dalaman KAGUM / MarTech</div>
+</div>
+
+<script>
+(()=>{
+'use strict';
+const KEY_NEW='KAGUM_TELEFONPERCUMA_IZZATI_V3_CARTOON';
+const KEY_OLD='KAGUM_TELEFONPERCUMA_IZZATI_V2';
+const statuses=['Belum mula','Dalam proses','Menunggu Bahan','Menunggu Approval','Blocked','Siap'];
+const mascotTips=[
+  'Fokus utama minggu pertama: collect bahan dari klien, edit content awal, dan pastikan posting pipeline jalan.',
+  'Kalau content lambat siap sebab video belum sampai, gunakan status “Menunggu Bahan” supaya isu jelas.',
+  'Weekly report yang bagus bukan sekadar views — masukkan juga insight dan cadangan improvement.',
+  'Jangan campur skop Izzati dengan sales. Itu akan ganggu fokus pada execution social media.',
+  'Simpan semua output dalam folder tersusun. Ini sangat membantu bila nak siapkan laporan internship nanti.',
+  'Kalau satu content perform bagus, rekod kenapa: hook, pacing, subtitle, CTA atau timing posting.'
+];
+const rows=[
+['01','04 NOV','Briefing','Fahami skop PIC media sosial','Skop Izzati + sempadan management jelas'],
+['02','04 NOV','Content Collection','Kenal pasti PIC footage Redzone & buat request','Senarai video / bahan yang diminta'],
+['03','04 NOV','Content Collection','Wujudkan folder asset & tracking penerimaan','Folder tersusun + Asset Request Log'],
+['04','04 NOV','Operations','Minta pengesahan akses akaun & SOP DM','Senarai akses / perkara pending'],
+['05','05 NOV','Research','Semak akaun dan baseline insights (jika akses)','Ringkasan follower, content & performance awal'],
+['06','05 NOV','Content Planning','Brainstorm idea/hook content minggu pertama','Content Idea Bank'],
+['07','05 NOV','Content Planning','Sediakan draft Content Calendar','Cadangan platform & jadual menunggu approval'],
+['08','05 NOV','Video Editing','Edit sekurang-kurangnya 1 pilot video jika footage ada','Draft video, subtitle, cover & CTA'],
+['09','06 NOV','Video Editing','Siapkan caption dan QC content','Final draft untuk review'],
+['10','06 NOV','Approval','Submit draft kepada approver yang ditetapkan','Approval Log + versi content'],
+['11','06 NOV','Posting','Sediakan jadual posting approved content','Publishing Schedule'],
+['12','06 NOV','Operations','Semak flow DM KAGUM ke Redzone','Approved first-response & route handoff'],
+['13','07 NOV','Project Start','Semak readiness dan publish jika approved','Day-1 Posting Log / status'],
+['14','07 NOV','Monitoring','Pantau posting & isu awal ikut roster yang disahkan','Day-1 Monitoring Notes'],
+['15','09–13 NOV','Content Cycle','Follow-up footage tambahan & edit content berikutnya','Updated asset log + ready-to-post drafts'],
+['16','09–13 NOV','Campaign','Jalankan kempen/posting yang diluluskan','Live URL + Campaign Execution Log'],
+['17','09–13 NOV','Monitoring','Pantau komen/DM dan escalate inquiry jualan','Ringkasan engagement & handoff (tanpa data sensitif)'],
+['18','13 NOV','Reporting','Sediakan weekly performance report pertama','Report views, reach, engagement & issues'],
+['19','SETIAP MINGGU','Reporting','Bandingkan prestasi & cadang 1–2 improvements','Weekly Learning / Optimization Notes'],
+['20','SETIAP BULAN','Review','Buat monthly social media campaign review','Monthly Performance Summary'],
+['21','BERTERUSAN','Internship','Simpan bukti kerja dan log pembelajaran','Portfolio / Internship Logbook']
+];
+const defaults=rows.map(([id,date,group,title,output])=>({id,date,group,title,output,status:'Belum mula',note:''}));
+const $=id=>document.getElementById(id);
+const safe=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let tasks=defaults.map(x=>({...x}));
+let visibleCount=7;
+function normalize(a){return defaults.map(x=>{const found=Array.isArray(a)?a.find(t=>t&&t.id===x.id):null;return {...x,status:statuses.includes(found?.status)?found.status:x.status,note:typeof found?.note==='string'?found.note.slice(0,600):''}})}
+try{
+  const current=JSON.parse(localStorage.getItem(KEY_NEW)||'null');
+  if(current) tasks=normalize(current);
+  else {
+    const old=JSON.parse(localStorage.getItem(KEY_OLD)||'null');
+    if(old) tasks=normalize(old);
+  }
+}catch(e){}
+function save(){try{localStorage.setItem(KEY_NEW,JSON.stringify(tasks))}catch(e){}}
+function updateTotals(){
+  const c=tasks.filter(x=>x.status==='Siap').length;
+  const active=tasks.filter(x=>x.status==='Dalam proses').length;
+  const hold=tasks.filter(x=>x.status.startsWith('Menunggu')||x.status==='Blocked').length;
+  const pct=Math.round(c/tasks.length*100);
+  ['total','sideTotal'].forEach(id=>$(id).textContent=tasks.length);
+  ['done','sideDone'].forEach(id=>$(id).textContent=c);
+  ['doing','sideDoing'].forEach(id=>$(id).textContent=active);
+  ['holding','sideHolding'].forEach(id=>$(id).textContent=hold);
+  $('percent').textContent=pct+'%';
+  $('ring').style.setProperty('--fill',pct+'%');
+}
+function render(){
+  const q=$('search').value.toLowerCase().trim();
+  const f=$('filter').value;
+  const selection=tasks.filter(x=>(f==='all'||x.status===f)&&[x.id,x.title,x.group,x.output,x.note].join(' ').toLowerCase().includes(q));
+  const shown=selection.slice(0,visibleCount);
+  $('tasks').innerHTML=selection.length?shown.map(x=>`<article class="task ${x.status==='Siap'?'complete':(x.status.startsWith('Menunggu')||x.status==='Blocked')?'wait':''}">
+      <div class="due">${safe(x.date)}<small>#${x.id}</small></div>
+      <div>
+        <span class="tgroup">${safe(x.group)}</span>
+        <h4>${safe(x.title)}</h4>
+        <p>Output: ${safe(x.output)}</p>
+      </div>
+      <div class="statusblock">
+        <label for="status-${x.id}">Status</label>
+        <select class="field" id="status-${x.id}" data-id="${x.id}" data-kind="status">${statuses.map(s=>`<option ${s===x.status?'selected':''}>${safe(s)}</option>`).join('')}</select>
+      </div>
+      <div class="task-note">
+        <label for="note-${x.id}">Nota / blocker</label>
+        <input class="field" id="note-${x.id}" data-id="${x.id}" data-kind="note" maxlength="600" value="${safe(x.note)}" placeholder="Contoh: menunggu video dari klien">
+      </div>
+    </article>`).join(''):'<div class="card">Tiada tugasan sepadan dengan carian semasa.</div>';
+  $('resultsInfo').textContent=`Memaparkan ${shown.length} daripada ${selection.length} tugasan sepadan`;
+  $('loadMore').hidden=shown.length>=selection.length;
+  $('loadMore').textContent=`Tunjuk lagi ${Math.min(7,selection.length-shown.length)} tugasan`;
+  updateTotals();
+}
+$('loadMore').onclick=()=>{visibleCount+=7;render()};
+$('tasks').addEventListener('input',e=>{const t=e.target;if(t.dataset.kind!=='note')return;const x=tasks.find(item=>item.id===t.dataset.id);if(x){x.note=t.value;save()}});
+$('tasks').addEventListener('change',e=>{const t=e.target;const x=tasks.find(item=>item.id===t.dataset.id);if(!x)return;if(t.dataset.kind==='status'&&statuses.includes(t.value)){x.status=t.value;save();render()}else if(t.dataset.kind==='note'){x.note=t.value;save()}});
+$('search').addEventListener('input',()=>{visibleCount=7;render()});
+$('filter').addEventListener('change',()=>{visibleCount=7;render()});
+function dl(text,filename,type){const u=URL.createObjectURL(new Blob([text],{type}));const a=document.createElement('a');a.href=u;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1500)}
+const csv=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+$('csv').onclick=()=>{const keys=['id','date','group','title','output','status','note'];dl('\ufeff'+[keys.map(csv).join(','),...tasks.map(x=>keys.map(k=>csv(x[k])).join(','))].join('\r\n'),'telefonpercuma_com_Izzati_Task_Tracker.csv','text/csv;charset=utf-8')};
+$('backup').onclick=()=>dl(JSON.stringify({project:'telefonpercuma.com',version:'3.0-cartoon',tasks},null,2),'telefonpercuma_com_Izzati_Backup_v3.json','application/json');
+$('restore').onclick=()=>$('restoreFile').click();
+$('restoreFile').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;try{const v=JSON.parse(await f.text());if(v.project!=='telefonpercuma.com'||!Array.isArray(v.tasks))throw new Error('Invalid');tasks=normalize(v.tasks);save();render();alert('Backup berjaya diimport.')}catch(err){alert('Fail backup tidak sesuai untuk tracker ini.')}e.target.value=''};
+$('reset').onclick=()=>{if(confirm('Reset semua status dan nota task?')){tasks=defaults.map(x=>({...x}));save();render()}};
+window.addEventListener('beforeprint',()=>{visibleCount=tasks.length;render()});
+$('printBtn').onclick=()=>{visibleCount=tasks.length;render();window.print()};
+$('copy').onclick=async()=>{
+ const text=$('briefText').innerText;
+ let copied=false;
+ try{if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(text);copied=true}}catch(e){}
+ if(!copied){const temp=document.createElement('textarea');temp.value=text;temp.style.position='fixed';temp.style.opacity='0';document.body.append(temp);temp.select();try{copied=document.execCommand('copy')}catch(e){}temp.remove()}
+ if(copied){$('copy').textContent='Disalin ✓';setTimeout(()=>{$('copy').textContent='Salin teks briefing'},1500)}else alert('Browser tidak membenarkan salinan automatik. Sila pilih teks briefing dan tekan Ctrl+C.');
+};
+let tipIndex=0;
+function nextTip(){tipIndex=(tipIndex+1)%mascotTips.length;$('mascotTip').textContent=mascotTips[tipIndex]}
+$('mascotTip').textContent=mascotTips[0];
+$('mascotTipBtn').onclick=nextTip;
+ document.querySelectorAll('.tabbtn').forEach(btn=>btn.addEventListener('click',()=>{
+   document.querySelectorAll('.tabbtn').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-selected','false')});
+   document.querySelectorAll('.tabpanel').forEach(p=>p.classList.remove('active'));
+   btn.classList.add('active');
+   btn.setAttribute('aria-selected','true');
+   const id='tab-'+btn.dataset.tab;
+   document.getElementById(id).classList.add('active');
+ }));
+ function progress(id,bar,start,end,now){const n=Math.max(0,Math.min(100,(now-start)/(end-start)*100));$(id).textContent=Math.round(n)+'%';$(bar).style.width=n+'%'}
+ const start=Date.parse('2026-11-07T00:00:00+08:00'),end=Date.parse('2027-03-07T00:00:00+08:00'),internEnd=Date.parse('2027-09-01T00:00:00+08:00');
+ const pad=n=>String(n).padStart(2,'0');
+ function refreshClock(){
+   const now=Date.now();
+   const before=now<start;
+   const sec=Math.floor(Math.abs(start-now)/1000);
+   const d=Math.floor(sec/86400),h=Math.floor((sec%86400)/3600),m=Math.floor((sec%3600)/60),s=sec%60;
+   $('days').textContent=d; $('hours').textContent=pad(h); $('mins').textContent=pad(m); $('secs').textContent=pad(s);
+   if(before){$('countTitle').textContent='Menuju 7 November 2026';$('countStatus').textContent='Baki masa menuju tarikh mula projek';}
+   else{$('countTitle').textContent='Tarikh mula projek telah tiba';$('countStatus').textContent=d+' hari sejak tarikh mula rujukan projek';}
+   progress('projPercent','projBar',start,end,now);
+   progress('internPercent','internBar',start,internEnd,now);
+ }
+ render(); refreshClock(); setInterval(refreshClock,1000);
+})();
+</script>
+</body>
+</html>
