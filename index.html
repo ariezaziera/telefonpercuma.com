@@ -207,31 +207,37 @@ table{width:100%;border-collapse:collapse;min-width:720px}th,td{padding:14px 12p
 .field{min-height:46px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:0.01ms!important;animation-duration:0.01ms!important}}
 
-/* v3.2: cartoon hourglass countdown companion (symbolic loop, not real-time sand mapping) */
-.hourglass-stage{display:flex;align-items:center;justify-content:center;gap:12px;margin:9px 0 16px;padding:12px 11px;background:#fff;border:2px dashed #f8d49b;border-radius:22px}
-.hourglass-visual{width:90px;height:116px;flex:none;display:grid;place-items:center;filter:drop-shadow(0 5px 0 #f9dfb6)}
-.hourglass-svg{width:90px;height:116px;overflow:visible;transform-origin:60px 80px;animation:flipHourglass 8s ease-in-out infinite}
+/* v3.3: fixed hourglass: centered flip, phase-correct sand flow, responsive-safe geometry */
+.hourglass-stage{display:flex;align-items:center;justify-content:center;gap:10px;margin:9px 0 16px;padding:11px 11px;background:#fff;border:2px dashed #f8d49b;border-radius:22px;overflow:hidden}
+.hourglass-visual{width:124px;height:134px;flex:none;display:grid;place-items:center;filter:drop-shadow(0 5px 0 #f9dfb6)}
+.hourglass-svg{width:88px;height:116px;overflow:visible;transform-box:view-box;transform-origin:50% 50%;animation:flipHourglass 8s ease-in-out infinite}
 .hourglass-svg .sand-top{transform-box:fill-box;transform-origin:center bottom;animation:sandTop 8s linear infinite}
 .hourglass-svg .sand-bottom{transform-box:fill-box;transform-origin:center bottom;animation:sandBottom 8s linear infinite}
 .hourglass-svg .sand-stream{animation:sandStream 8s linear infinite}
-.hourglass-svg .sand-grain{animation:sandGrain 1.15s ease-in infinite}
-.hourglass-svg .sand-grain.two{animation-delay:.4s}
-.hourglass-svg .sand-grain.three{animation-delay:.8s}
+.hourglass-svg .grains-phase-a{animation:showPhaseA 8s steps(1,end) infinite}
+.hourglass-svg .grains-phase-b{animation:showPhaseB 8s steps(1,end) infinite}
+.hourglass-svg .grains-phase-a .sand-grain{animation:grainDown 1.15s ease-in infinite}
+.hourglass-svg .grains-phase-b .sand-grain{animation:grainUp 1.15s ease-in infinite}
+.hourglass-svg .sand-grain.two{animation-delay:-.38s}
+.hourglass-svg .sand-grain.three{animation-delay:-.77s}
 .hourglass-info{flex:1;min-width:0}
 .hourglass-info strong{display:block;font-size:15px;line-height:1.3;color:#9e5260}
-.hourglass-info p{font-size:12px;line-height:1.4;color:#7a7580;margin:5px 0 9px}
-.hourglass-toggle{display:inline-flex;align-items:center;gap:6px;border:2px solid #edd08e;border-radius:999px;background:#fff5dc;padding:6px 10px;min-height:36px;font-size:12px;color:#79531b;font-weight:900;box-shadow:0 3px 0 #f6e3b9;cursor:pointer}
+.hourglass-info p{font-size:12px;line-height:1.45;color:#726d76;margin:5px 0 9px}
+.hourglass-toggle{display:inline-flex;align-items:center;gap:6px;border:2px solid #edd08e;border-radius:999px;background:#fff5dc;padding:6px 10px;min-height:40px;font-size:12px;color:#79531b;font-weight:900;box-shadow:0 3px 0 #f6e3b9;cursor:pointer}
 .hourglass-toggle:hover{background:#ffe9b6}
 .hourglass-paused .hourglass-svg,.hourglass-paused .hourglass-svg *{animation-play-state:paused!important}
-@keyframes flipHourglass{0%,41%{transform:rotate(0deg)}49%,91%{transform:rotate(180deg)}100%{transform:rotate(360deg)}}
-@keyframes sandTop{0%{transform:scaleY(1)}41%{transform:scaleY(.14)}49%{transform:scaleY(1)}91%{transform:scaleY(.14)}100%{transform:scaleY(1)}}
-@keyframes sandBottom{0%{transform:scaleY(.13)}41%{transform:scaleY(1)}49%{transform:scaleY(.13)}91%{transform:scaleY(1)}100%{transform:scaleY(.13)}}
-@keyframes sandStream{0%,39%,49%,89%,100%{opacity:1}41%,47%,91%,98%{opacity:0}}
-@keyframes sandGrain{0%{opacity:0;transform:translateY(-2px)}35%{opacity:1}100%{opacity:0;transform:translateY(13px)}}
-@media(max-width:390px){.hourglass-visual{width:80px}.hourglass-stage{gap:8px;padding:9px}.hourglass-info strong{font-size:14px}.hourglass-info p{font-size:11px}}
-@media(prefers-reduced-motion:reduce){.hourglass-svg,.hourglass-svg *{animation:none!important}}
-@media print{.hourglass-svg,.hourglass-svg *{animation:none!important}.hourglass-toggle{display:none!important}}
-
+/* Upright: empty upper / fill lower. Inverted: original lower empties / upper fills. */
+@keyframes flipHourglass{0%,40%{transform:rotate(0deg)}50%,90%{transform:rotate(180deg)}100%{transform:rotate(360deg)}}
+@keyframes sandTop{0%{transform:scaleY(1)}40%,50%{transform:scaleY(.10)}90%,100%{transform:scaleY(1)}}
+@keyframes sandBottom{0%{transform:scaleY(.10)}40%,50%{transform:scaleY(1)}90%,100%{transform:scaleY(.10)}}
+@keyframes sandStream{0%,39%{opacity:1}41%,49%{opacity:0}51%,89%{opacity:1}91%,99%{opacity:0}100%{opacity:1}}
+@keyframes showPhaseA{0%,40%{opacity:1}41%,99%{opacity:0}100%{opacity:1}}
+@keyframes showPhaseB{0%,49%{opacity:0}50%,90%{opacity:1}91%,100%{opacity:0}}
+@keyframes grainDown{0%{opacity:0;transform:translateY(-6px)}30%{opacity:1}90%,100%{opacity:0;transform:translateY(9px)}}
+@keyframes grainUp{0%{opacity:0;transform:translateY(6px)}30%{opacity:1}90%,100%{opacity:0;transform:translateY(-9px)}}
+@media(max-width:390px){.hourglass-visual{width:104px;height:124px}.hourglass-svg{width:72px;height:96px}.hourglass-stage{gap:6px;padding:9px}.hourglass-info strong{font-size:14px}.hourglass-info p{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.hourglass-svg,.hourglass-svg *{animation:none!important}.hourglass-svg .grains-phase-b{opacity:0}.hourglass-toggle{display:none!important}}
+@media print{.hourglass-svg,.hourglass-svg *{animation:none!important}.hourglass-svg .grains-phase-b{opacity:0}.hourglass-toggle{display:none!important}}
 </style>
 </head>
 <body>
@@ -283,9 +289,16 @@ table{width:100%;border-collapse:collapse;min-width:720px}th,td{padding:14px 12p
                 <path class="sand-top" d="M35 44 H85 C82 55 72 66 60 73 C48 66 38 55 35 44Z" fill="#ffc65c"/>
                 <path class="sand-bottom" d="M60 85 C73 96 81 107 85 118 H35 C39 107 47 96 60 85Z" fill="#ffae52"/>
                 <rect class="sand-stream" x="57.5" y="75" width="5" height="11" rx="2" fill="#f6b143"/>
-                <circle class="sand-grain" cx="55" cy="78" r="2" fill="#ffc65c"/>
-                <circle class="sand-grain two" cx="63" cy="81" r="2" fill="#ffae52"/>
-                <circle class="sand-grain three" cx="59" cy="76" r="1.7" fill="#e99e3c"/>
+                <g class="grains-phase-a">
+                  <circle class="sand-grain" cx="55" cy="78" r="2" fill="#ffc65c"/>
+                  <circle class="sand-grain two" cx="63" cy="81" r="2" fill="#ffae52"/>
+                  <circle class="sand-grain three" cx="59" cy="76" r="1.7" fill="#e99e3c"/>
+                </g>
+                <g class="grains-phase-b">
+                  <circle class="sand-grain" cx="55" cy="82" r="2" fill="#ffc65c"/>
+                  <circle class="sand-grain two" cx="63" cy="79" r="2" fill="#ffae52"/>
+                  <circle class="sand-grain three" cx="59" cy="84" r="1.7" fill="#e99e3c"/>
+                </g>
                 <path d="M31 43 C31 55 40 65 48 71" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity=".72" fill="none"/>
                 <path d="M88 114 C85 102 81 97 75 92" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity=".6" fill="none"/>
                 <rect x="16" y="22" width="88" height="14" rx="7" fill="#e88f73" stroke="#2f4053" stroke-width="3"/>
@@ -297,7 +310,7 @@ table{width:100%;border-collapse:collapse;min-width:720px}th,td{padding:14px 12p
           </div>
           <div class="hourglass-info">
             <strong>⏳ Pasir masa bergerak!</strong>
-            <p>Animasi simbolik · Countdown sebenar di bawah.</p>
+            <p>Animasi pasir berpusing · Masa sebenar di bawah.</p>
             <button type="button" class="hourglass-toggle" id="hourglassToggle" aria-pressed="false" aria-label="Jeda animasi jam pasir">⏸ Jeda animasi</button>
           </div>
         </div>
